@@ -1,56 +1,82 @@
-import { Check } from "lucide-react"
+import { Check } from "lucide-react";
+import React from "react";
 
-export function PricingCard({
-  title,
-  price,
-  period,
-  description,
-  features,
-  buttonText,
-  buttonVariant = "primary",
-  highlighted = false,
-}: {
-  title: string
-  price: string
-  period?: string
-  description: string
-  features: string[]
-  buttonText: string
-  buttonVariant?: "primary" | "outline"
-  highlighted?: boolean
-}) {
+export function PricingSection() {
   return (
-    <div
-      className={`bg-white rounded-xl overflow-hidden ${
-        highlighted ? "shadow-xl border-2 border-indigo-500 relative -mt-4 mb-4" : "shadow-sm border border-neutral-100"
-      }`}
-    >
-      {highlighted && <div className="bg-indigo-500 text-white text-center py-1 text-sm font-medium">MOST POPULAR</div>}
-      <div className="p-8">
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <div className="flex items-baseline mb-4">
-          <span className="text-3xl font-bold">{price}</span>
-          {period && <span className="text-neutral-500 ml-1">{period}</span>}
-        </div>
-        <p className="text-neutral-600 mb-6">{description}</p>
-        <button
-          className={`w-full py-3 rounded-lg font-medium mb-6 ${
-            buttonVariant === "primary"
-              ? "bg-indigo-600 hover:bg-indigo-700 text-white"
-              : "border border-indigo-200 hover:border-indigo-300 text-indigo-600"
-          } transition`}
-        >
-          {buttonText}
-        </button>
-        <ul className="space-y-3">
-          {features.map((feature, index) => (
-            <li key={index} className="flex items-start">
-              <Check className="w-5 h-5 text-emerald-500 mr-2 shrink-0 mt-0.5" />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
+    <section className="border-b">
+      <div className="border-b py-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-2">
+          Affordable Plans for Every Creator
+        </h2>
+        <p className="text-muted-foreground text-lg text-center max-w-2xl mx-auto">
+          Choose the plan that works for your content creation needs
+        </p>
       </div>
-    </div>
-  )
+      <div className="grid md:grid-cols-3">
+        {[
+          {
+            title: "Hobbyist",
+            price: "Free Forever",
+            description: "Perfect for trying out the platform",
+            features: [
+              "3 reels per month",
+              "720p output quality",
+              "Basic editing features",
+              "Manual uploads",
+            ],
+            buttonText: "Get Started",
+            buttonVariant: "outline",
+          },
+          {
+            title: "Pro",
+            price: "$20/month + add'l usage.",
+            description: "Ideal for active content creators",
+            features: [
+              "Unlimited reels",
+              "1080p output quality",
+              "Advanced AI editing",
+              "Auto captions",
+              "Direct social uploading",
+              "Priority processing",
+            ],
+            buttonText: "Start Pro",
+            buttonVariant: "primary",
+          },
+          {
+            title: "Business",
+            price: "Contact Us",
+            description: "For teams and agencies",
+            features: [
+              "Everything in Pro",
+              "4K output quality",
+              "White-label options",
+              "API access",
+              "Custom branding",
+              "Team management",
+            ],
+            buttonText: "Contact Sales",
+            buttonVariant: "outline",
+          },
+        ].map((plan, index) => (
+          <div key={index} className="flex flex-col border-r py-14 px-6">
+            <div className="">
+              <h3 className="text-xl font-bold">{plan.title}</h3>
+              <p className="text-muted-foreground mt-2 mb-6">
+                {plan.description}{" "}
+                <span className="text-primary font-semibold">{plan.price}</span>
+              </p>
+            </div>
+            <div className="">
+              {plan.features.map((feature, index) => (
+                <div key={index} className="flex items-center">
+                  <Check className="w-5 h-5 text-emerald-500 mr-2" />
+                  <span className="text-muted-foreground">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }

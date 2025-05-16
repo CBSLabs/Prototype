@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import PlusIcon from "./PlusIcon";
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -11,36 +12,70 @@ export function FaqSection() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const items = [
+    {
+      question: "What video formats can I upload?",
+      answer:
+        "We support all major video formats including MP4, MOV, AVI, and WMV. You can also paste YouTube links directly.",
+    },
+    {
+      question: "How long does the AI editing process take?",
+      answer:
+        "Most videos are processed within 5-15 minutes, depending on length and complexity. Pro users get priority processing for faster results.",
+    },
+    {
+      question: "Can I upload directly to social media?",
+      answer:
+        "Yes! Our Pro and Business plans allow direct uploading to Instagram Reels, TikTok, and YouTube Shorts after you connect your accounts.",
+    },
+    {
+      question: "Is my content secure?",
+      answer:
+        "Absolutely. We use bank-level encryption and secure cloud storage. Your videos are only accessible to you, and we never use your content for any other purposes.",
+    },
+    {
+      question: "What video formats can I upload?",
+      answer:
+        "We support all major video formats including MP4, MOV, AVI, and WMV. You can also paste YouTube links directly.",
+    },
+    {
+      question: "How long does the AI editing process take?",
+      answer:
+        "Most videos are processed within 5-15 minutes, depending on length and complexity. Pro users get priority processing for faster results.",
+    },
+    {
+      question: "Can I upload directly to social media?",
+      answer:
+        "Yes! Our Pro and Business plans allow direct uploading to Instagram Reels, TikTok, and YouTube Shorts after you connect your accounts.",
+    },
+    {
+      question: "Is my content secure?",
+      answer:
+        "Absolutely. We use bank-level encryption and secure cloud storage. Your videos are only accessible to you, and we never use your content for any other purposes.",
+    },
+  ];
+
   return (
-    <section className="border-b">
-      <div className="flex">
-        <h2 className="text-2xl md:text-3xl font-bold text-center border-r">
+    <section className="relative border-b">
+      <div className="absolute -top-4 -left-4">
+        <PlusIcon />
+      </div>
+      <div className="absolute -bottom-4 -right-4">
+        <PlusIcon />
+      </div>
+      <div className="grid grid-cols-3">
+        <h2 className="col-span-1 text-xl md:text-2xl px-7 py-10 font-bold text-center border-r">
           Frequently asked questions.
         </h2>
-        <div className="w-full">
-          {[
-            {
-              question: "What video formats can I upload?",
-              answer:
-                "We support all major video formats including MP4, MOV, AVI, and WMV. You can also paste YouTube links directly.",
-            },
-            {
-              question: "How long does the AI editing process take?",
-              answer:
-                "Most videos are processed within 5-15 minutes, depending on length and complexity. Pro users get priority processing for faster results.",
-            },
-            {
-              question: "Can I upload directly to social media?",
-              answer:
-                "Yes! Our Pro and Business plans allow direct uploading to Instagram Reels, TikTok, and YouTube Shorts after you connect your accounts.",
-            },
-            {
-              question: "Is my content secure?",
-              answer:
-                "Absolutely. We use bank-level encryption and secure cloud storage. Your videos are only accessible to you, and we never use your content for any other purposes.",
-            },
-          ].map((item, index) => (
-            <div key={index} className={`w-full p-7 ${index !== 3 ? "border-b" : ""} overflow-hidden`} >
+        <div className="w-full col-span-2">
+          {items.map((item, index) => (
+            <div
+              onClick={() => toggleItem(index)}
+              key={index}
+              className={`w-full p-7 cursor-pointer ${
+                index !== items.length - 1 ? "border-b" : ""
+              } overflow-hidden`}
+            >
               <div className="flex items-center ">
                 <div className="flex items-center justify-between w-full">
                   <h3 className="text-lg font-semibold">{item.question}</h3>

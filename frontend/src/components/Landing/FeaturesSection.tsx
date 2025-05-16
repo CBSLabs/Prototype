@@ -1,0 +1,64 @@
+import { MessageSquareText, Zap } from "lucide-react";
+import React from "react";
+import { CpuArchitecture } from "../ui/cpu-architecture";
+
+export function FeaturesSection() {
+  return (
+    <section className="min-h-[calc(100vh-10rem)] border-b">
+      <div className="w-full border-b">
+        <div className="py-24 max-w-xl mx-auto">
+          <h2 className="text-xl md:text-3xl font-bold text-center mb-4">
+            Everything You Need to Create Viral Reels & Shorts
+          </h2>
+        </div>
+      </div>
+      <div className="">
+        <div className="grid grid-cols-2 gap-8 h-full">
+          <div className="border-r h-full p-10">
+            <p className="flex items-center gap-2 text-muted-foreground">
+              <Zap className="w-5 h-5" />
+              <span className=" ">AI Editing</span>
+            </p>
+            <p className="font-semibold text-2xl leading-none mt-4">
+              Our AI automatically identifies the best clips and creates
+              engaging edits.
+            </p>
+          </div>
+          <div className="h-full p-10">
+            <p className="flex items-center gap-2 text-muted-foreground">
+              <MessageSquareText className="w-5 h-5" />
+              <span className="">Auto Captions</span>
+            </p>
+            <p className="font-semibold text-2xl leading-none mt-4">
+              Generate accurate captions in seconds, making your content
+              accessible to everyone.
+            </p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-8 h-full border-t">
+          <div className="border-r h-full p-10">
+            <p className="flex items-center gap-2 text-muted-foreground">
+              <Zap className="w-5 h-5" />
+              <span className=" ">One-Click Social Uploads</span>
+            </p>
+            <p className="font-semibold text-2xl leading-none mt-4">
+              Upload directly to YouTube Shorts or Instagram Reels without
+              leaving the app. TODO: ICONS
+            </p>
+          </div>
+          <div className="h-full p-10">
+            <p className="flex items-center gap-2 text-muted-foreground">
+              <MessageSquareText className="w-5 h-5" />
+              <span className="">Fast & Scalable</span>
+            </p>
+            <p className="font-semibold text-2xl leading-none mt-4">
+              Process videos in minutes with our cloud-based, high-speed
+              pipeline.
+            </p>
+            <CpuArchitecture />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

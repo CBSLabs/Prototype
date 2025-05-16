@@ -4,44 +4,50 @@ import React from "react";
 export function PricingSection() {
   const plans = [
     {
-      title: "Hobbyist",
+      title: "Starter",
       price: "Free Forever",
-      description: "Perfect for trying out the platform",
+      description:
+        "Great for exploring the platform with limited monthly credits.",
+      credits: "10 credits/month",
       features: [
-        "3 reels per month",
-        "720p output quality",
-        "Basic editing features",
-        "Manual uploads",
+        "Use credits to create up to 3 reels/month",
+        "720p export resolution",
+        "Basic editing tools",
+        "Manual video uploads",
       ],
       buttonText: "Get Started",
       buttonVariant: "outline",
     },
     {
-      title: "Pro",
-      price: "$20/month + add'l usage.",
-      description: "Ideal for active content creators",
+      title: "Creator",
+      price: "$20/month",
+      description:
+        "Designed for regular creators needing more credits and better tools.",
+      credits: "100 credits/month",
       features: [
-        "Unlimited reels",
-        "1080p output quality",
-        "Advanced AI editing",
-        "Auto captions",
-        "Direct social uploading",
+        "Create unlimited reels (based on credit usage)",
+        "1080p HD exports",
+        "Advanced AI-powered editing",
+        "Automatic caption generation",
+        "Direct upload to Instagram & YouTube",
         "Priority processing",
       ],
-      buttonText: "Start Pro",
+      buttonText: "Subscribe Now",
       buttonVariant: "primary",
     },
     {
-      title: "Business",
-      price: "Contact Us",
-      description: "For teams and agencies",
+      title: "Agency",
+      price: "Custom Pricing",
+      description:
+        "For teams or agencies with high-volume and advanced needs.",
+      credits: "Custom credits/month",
       features: [
-        "Everything in Pro",
-        "4K output quality",
-        "White-label options",
-        "API access",
-        "Custom branding",
-        "Team management",
+        "Everything in Creator plan",
+        "4K Ultra HD exports",
+        "API access for automation",
+        "White-label branding support",
+        "Team-based project management",
+        "Dedicated account support",
       ],
       buttonText: "Contact Sales",
       buttonVariant: "outline",
@@ -52,38 +58,31 @@ export function PricingSection() {
     <section className="border-b">
       <div className="border-b">
         <div className="h-20 grid grid-cols-10 w-full">
-          <div className="border-r border-b"></div>
-          <div className="border-r border-b"></div>
-          <div className="border-r border-b"></div>
-          <div className="border-r border-b"></div>
-          <div className="border-r border-b"></div>
-          <div className="border-r border-b"></div>
-          <div className="border-r border-b"></div>
-          <div className="border-r border-b"></div>
-          <div className="border-r border-b"></div>
-          <div className="border-b"></div>
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className={`border-b ${i < 9 ? "border-r" : ""}`}
+            ></div>
+          ))}
         </div>
         <div className="py-10">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-2">
-            Affordable Plans for Every Creator
+            Flexible Credit-Based Plans
           </h2>
           <p className="text-muted-foreground text-lg text-center max-w-2xl mx-auto">
-            Choose the plan that works for your content creation needs
+            Purchase a plan that fits your production volume. Use credits for rendering, AI editing, and more.
           </p>
         </div>
         <div className="h-20 grid grid-cols-10 w-full">
-          <div className="border-r border-t"></div>
-          <div className="border-r border-t"></div>
-          <div className="border-r border-t"></div>
-          <div className="border-r border-t"></div>
-          <div className="border-r border-t"></div>
-          <div className="border-r border-t"></div>
-          <div className="border-r border-t"></div>
-          <div className="border-r border-t"></div>
-          <div className="border-r border-t"></div>
-          <div className="border-t"></div>
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className={`border-t ${i < 9 ? "border-r" : ""}`}
+            ></div>
+          ))}
         </div>
       </div>
+
       <div className="grid md:grid-cols-3">
         {plans.map((plan, index) => (
           <div
@@ -92,16 +91,18 @@ export function PricingSection() {
               index === plans.length - 1 ? "" : "border-r"
             } py-14 px-6`}
           >
-            <div className="">
+            <div>
               <h3 className="text-xl font-bold">{plan.title}</h3>
-              <p className="text-muted-foreground mt-2 mb-6">
-                {plan.description}{" "}
-                <span className="text-primary font-semibold">{plan.price}</span>
+              <p className="text-muted-foreground mt-2 mb-1">
+                {plan.description}
+              </p>
+              <p className="text-primary font-semibold mb-6">
+                {plan.price} – {plan.credits}
               </p>
             </div>
-            <div className="">
-              {plan.features.map((feature, index) => (
-                <div key={index} className="flex items-center">
+            <div>
+              {plan.features.map((feature, i) => (
+                <div key={i} className="flex items-center mb-2">
                   <Check className="w-5 h-5 text-emerald-500 mr-2" />
                   <span className="text-muted-foreground">{feature}</span>
                 </div>

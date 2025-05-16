@@ -1,6 +1,14 @@
-import { MessageSquareText, Zap } from "lucide-react";
 import React from "react";
 import { CpuArchitecture } from "../ui/cpu-architecture";
+import { MultipleUploadDiagram } from "./MultipleUploadDiagram";
+import {
+  IconAi,
+  IconCpu,
+  IconMessageFilled,
+  IconPlayerPlayFilled,
+  IconWorldUpload,
+} from "@tabler/icons-react";
+import ShinyText from "../ui/ShinyText";
 
 export function FeaturesSection() {
   return (
@@ -16,42 +24,54 @@ export function FeaturesSection() {
         <div className="grid grid-cols-2 gap-8 h-full">
           <div className="border-r h-full p-10">
             <p className="flex items-center gap-2 text-muted-foreground">
-              <Zap className="w-5 h-5" />
+              <IconAi />
               <span className=" ">AI Editing</span>
             </p>
-            <p className="font-semibold text-2xl leading-none mt-4">
+            <p className="font-semibold text-2xl mt-4">
               Our AI automatically identifies the best clips and creates
               engaging edits.
             </p>
           </div>
           <div className="h-full p-10">
             <p className="flex items-center gap-2 text-muted-foreground">
-              <MessageSquareText className="w-5 h-5" />
+              <IconMessageFilled className="w-5 h-5" />
               <span className="">Auto Captions</span>
             </p>
-            <p className="font-semibold text-2xl leading-none mt-4">
+            <p className="font-semibold text-2xl mt-4">
               Generate accurate captions in seconds, making your content
               accessible to everyone.
             </p>
+            <div className="pb-6 pt-14 w-full flex flex-col items-center justify-center">
+              <div className="flex items-center justify-center w-20 h-20 rounded-full bg-secondary/30 text-primary">
+                <IconPlayerPlayFilled className="h-10 w-10 animate-in" />
+              </div>
+              <ShinyText
+                text='"Transform your moments into viral sensations in just seconds!"'
+                disabled={false}
+                speed={3}
+                className="italic text-sm text-muted-foreground mt-4"
+              />
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-8 h-full border-t">
           <div className="border-r h-full p-10">
             <p className="flex items-center gap-2 text-muted-foreground">
-              <Zap className="w-5 h-5" />
+              <IconWorldUpload className="w-5 h-5" />
               <span className=" ">One-Click Social Uploads</span>
             </p>
-            <p className="font-semibold text-2xl leading-none mt-4">
+            <p className="font-semibold text-2xl mt-4">
               Upload directly to YouTube Shorts or Instagram Reels without
-              leaving the app. TODO: ICONS
+              leaving the app.
             </p>
+            <MultipleUploadDiagram />
           </div>
           <div className="h-full p-10">
             <p className="flex items-center gap-2 text-muted-foreground">
-              <MessageSquareText className="w-5 h-5" />
+              <IconCpu className="w-5 h-5" />
               <span className="">Fast & Scalable</span>
             </p>
-            <p className="font-semibold text-2xl leading-none mt-4">
+            <p className="font-semibold text-2xl mt-4">
               Process videos in minutes with our cloud-based, high-speed
               pipeline.
             </p>

@@ -109,7 +109,9 @@ export function Footer() {
           </div>
         </div>
 
-        <ThemeSwitcher />
+        <div className="inline-block mt-4">
+          <ThemeSwitcher />
+        </div>
 
         <div className="border-t border-neutral-800 mt-12 pt-8 text-center">
           <p>© {new Date().getFullYear()} Lumora . All rights reserved.</p>

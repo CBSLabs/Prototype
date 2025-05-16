@@ -34,7 +34,7 @@ export default function RootLayout({
         disableTransitionOnChange
       >
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black bg-white`}
         >
           <LandingNavbar />
           <main className="max-w-5xl mx-auto px-4">{children}</main>

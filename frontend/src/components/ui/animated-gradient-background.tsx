@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import React, { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
 interface AnimatedGradientBackgroundProps {
   /**
@@ -19,7 +20,7 @@ interface AnimatedGradientBackgroundProps {
   /**
    * Array of colors to use in the radial gradient.
    * Each color corresponds to a stop percentage in `gradientStops`.
-   * @default ["#0A0A0A", "#2979FF", "#FF80AB", "#FF6D00", "#FFD600", "#00E676", "#3D5AFE"]
+   * @default ["#2979FF", "#FF80AB", "#FF6D00", "#FFD600", "#00E676", "#3D5AFE"]
    */
   gradientColors?: string[];
 
@@ -65,15 +66,7 @@ interface AnimatedGradientBackgroundProps {
 const AnimatedGradientBackground: React.FC<AnimatedGradientBackgroundProps> = ({
   startingGap = 125,
   Breathing = false,
-  gradientColors = [
-    "#0A0A0A",
-    "#2979FF",
-    "#FF80AB",
-    "#FF6D00",
-    "#FFD600",
-    "#00E676",
-    "#3D5AFE",
-  ],
+  gradientColors,
   gradientStops = [35, 50, 60, 70, 80, 90, 100],
   animationSpeed = 0.02,
   breathingRange = 5,
@@ -81,6 +74,17 @@ const AnimatedGradientBackground: React.FC<AnimatedGradientBackgroundProps> = ({
   topOffset = 0,
   containerClassName = "",
 }) => {
+  const { theme } = useTheme();
+  gradientColors = gradientColors || [
+    theme === "dark" ? "#0A0A0A" : "#FFFFFF",
+    // theme === "dark" ? "#0A0A0A" : "#FFFFFF",
+    "#2979FF",
+    "#FF80AB",
+    "#FF6D00",
+    "#FFD600",
+    "#00E676",
+    "#3D5AFE",
+  ];
   if (gradientColors.length !== gradientStops.length) {
     throw new Error(
       `GradientColors and GradientStops must have the same length.

@@ -8,7 +8,7 @@ export default function Pill({
   text: string;
 }) {
   return (
-    <span className={`${classname} rounded-full px-4 py-1 text-sm leading-none`}>
+    <span className={`${classname} rounded-full px-4 py-1 md:text-sm text-xs leading-none`}>
       {text}
     </span>
   );

@@ -14,30 +14,30 @@ export function FeaturesSection() {
   return (
     <section className="min-h-[calc(100vh-10rem)] border-b">
       <div className="w-full border-b">
-        <div className="py-24 max-w-xl mx-auto">
+        <div className="md:py-24 py-14 px-4 max-w-xl mx-auto">
           <h2 className="text-xl md:text-3xl font-bold text-center mb-4">
             Everything You Need to Create Viral Reels & Shorts
           </h2>
         </div>
       </div>
       <div className="">
-        <div className="grid grid-cols-2 gap-8 h-full">
-          <div className="border-r h-full p-10">
+        <div className="grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-4 h-full">
+          <div className="md:border-r h-full md:p-10 p-5">
             <p className="flex items-center gap-2 text-muted-foreground">
               <IconAi />
               <span className=" ">AI Editing</span>
             </p>
-            <p className="font-semibold text-2xl mt-4">
+            <p className="font-semibold md:text-2xl text-xl mt-4">
               Our AI automatically identifies the best clips and creates
               engaging edits.
             </p>
           </div>
-          <div className="h-full p-10">
+          <div className="h-full md:p-10 p-5">
             <p className="flex items-center gap-2 text-muted-foreground">
               <IconMessageFilled className="w-5 h-5" />
               <span className="">Auto Captions</span>
             </p>
-            <p className="font-semibold text-2xl mt-4">
+            <p className="font-semibold md:text-2xl text-xl mt-4">
               Generate accurate captions in seconds, making your content
               accessible to everyone.
             </p>
@@ -54,28 +54,30 @@ export function FeaturesSection() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-8 h-full border-t">
-          <div className="border-r h-full p-10">
+        <div className="grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-4 h-full border-t">
+          <div className="md:border-r border-b h-full md:p-10 p-5">
             <p className="flex items-center gap-2 text-muted-foreground">
               <IconWorldUpload className="w-5 h-5" />
               <span className=" ">One-Click Social Uploads</span>
             </p>
-            <p className="font-semibold text-2xl mt-4">
+            <p className="font-semibold md:text-2xl text-xl mt-4">
               Upload directly to YouTube Shorts or Instagram Reels without
               leaving the app.
             </p>
             <MultipleUploadDiagram />
           </div>
-          <div className="h-full p-10">
+          <div className="h-full md:p-10 p-5">
             <p className="flex items-center gap-2 text-muted-foreground">
               <IconCpu className="w-5 h-5" />
               <span className="">Fast & Scalable</span>
             </p>
-            <p className="font-semibold text-2xl mt-4">
+            <p className="font-semibold md:text-2xl text-xl mt-4">
               Process videos in minutes with our cloud-based, high-speed
               pipeline.
             </p>
-            <CpuArchitecture />
+            <div className="md:pb-0">
+              <CpuArchitecture />
+            </div>
           </div>
         </div>
       </div>

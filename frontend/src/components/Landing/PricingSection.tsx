@@ -57,7 +57,7 @@ export function PricingSection() {
   return (
     <section className="border-b">
       <div className="border-b">
-        <div className="h-20 grid grid-cols-10 w-full">
+        <div className="md:h-20 h-14 grid grid-cols-10 w-full">
           {[...Array(10)].map((_, i) => (
             <div
               key={i}
@@ -66,14 +66,14 @@ export function PricingSection() {
           ))}
         </div>
         <div className="py-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-2">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-2">
             Flexible Credit-Based Plans
           </h2>
-          <p className="text-muted-foreground text-lg text-center max-w-2xl mx-auto">
+          <p className="text-muted-foreground md:text-lg text-center max-w-2xl mx-auto">
             Purchase a plan that fits your production volume. Use credits for rendering, AI editing, and more.
           </p>
         </div>
-        <div className="h-20 grid grid-cols-10 w-full">
+        <div className="md:h-20 h-14 grid grid-cols-10 w-full">
           {[...Array(10)].map((_, i) => (
             <div
               key={i}

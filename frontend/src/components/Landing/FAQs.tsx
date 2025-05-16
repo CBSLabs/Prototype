@@ -63,7 +63,7 @@ export function FaqSection() {
       <div className="absolute -bottom-4 -right-4">
         <PlusIcon />
       </div>
-      <div className="grid grid-cols-3">
+      <div className="md:grid grid-cols-3">
         <h2 className="col-span-1 text-xl md:text-2xl px-7 py-10 font-bold text-center border-r">
           Frequently asked questions.
         </h2>
@@ -72,7 +72,7 @@ export function FaqSection() {
             <div
               onClick={() => toggleItem(index)}
               key={index}
-              className={`w-full p-7 cursor-pointer ${
+              className={`w-full md:p-7 p-5 cursor-pointer ${
                 index !== items.length - 1 ? "border-b" : ""
               } overflow-hidden`}
             >

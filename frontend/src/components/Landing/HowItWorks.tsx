@@ -27,10 +27,10 @@ export function HowItWorks() {
             perfect reel.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="dark:bg-white bg-neutral-200 text-black px-6 py-3 rounded-full font-medium hover:bg-neutral-200 transition cursor-pointer">
+            <button className="dark:bg-white bg-neutral-200 text-black md:px-6 px-4 md:py-3 py-1.5 md:text-base text-sm rounded-full font-medium hover:bg-neutral-200 transition cursor-pointer">
               Get Started
             </button>
-            <button className="bg-neutral-900 text-white px-6 py-3 rounded-full border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer">
+            <button className="bg-neutral-900 text-white md:px-6 md:py-3 px-4 py-1.5 md:text-base text-sm rounded-full border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer">
               Learn More
             </button>
           </div>

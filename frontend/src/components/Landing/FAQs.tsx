@@ -56,7 +56,7 @@ export function FaqSection() {
   ];
 
   return (
-    <section className="relative border-b">
+    <section className="relative border-b transition-transform">
       <div className="absolute -top-4 -left-4">
         <PlusIcon />
       </div>

@@ -1,10 +1,18 @@
 from fastapi import FastAPI, Query
 from app.youtube import fetch_transcript
 from app.highlight import extract_highlights_from_transcript
+from app.youtube import downloadYoutubeVideoLocal
 
 # Initialize FastAPI app
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    """
+    Root endpoint to check if the server is running.
+    Returns a simple message.
+    """
+    return {"message": "Server is running!","status": "OK"}
 
 @app.get("/transcript")
 def get_transcript(url: str):
@@ -69,3 +77,17 @@ def get_highlight(url: str):
         "end": highlight_data["end_time"],                    # End timestamp in seconds
         "full_transcript": full_transcript                    # Required for frontend timeline or subtitle overlay
     }
+    
+@app.post("/download")
+def download_video(videoURL: str):
+    """
+    Downloads a YouTube video to a specified local path.
+    Parameters:
+        videoURL (str): The URL of the YouTube video.
+    Returns:
+        dict: A message indicating the download status.
+    """
+    
+    downloadYoutubeVideoLocal(videoURL)
+    
+    return {"message": "Video downloaded successfully!"}

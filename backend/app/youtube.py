@@ -94,3 +94,31 @@ def fetch_transcript(youtube_url: str):
         "full_transcript": transcript,
         "plain_text": plain_text
     }
+
+
+from pytubefix import YouTube
+from pytubefix.cli import on_progress
+import os
+import re
+    
+def downloadYoutubeVideoLocal(videoURL: str):
+    """
+    Downloads a YouTube video to a specified local path relative to the current working directory.
+    Parameters:
+        videoURL (str): The URL of the YouTube video.
+
+    Returns:
+        None
+    """
+    try:
+        yt = YouTube(videoURL, on_progress_callback=on_progress)
+        ys = yt.streams.get_highest_resolution()
+        currentWorkingDirectory = os.getcwd()
+        print("currentWorkingDirectory: ", currentWorkingDirectory)
+        output_path = os.path.join(os.getcwd(), "downloads")
+        if not os.path.exists(os.path.dirname(output_path)):
+            os.makedirs(os.path.dirname(output_path))
+        ys.download(output_path=output_path)
+        print(f"Video downloaded successfully: {yt.title}")
+    except Exception as e:
+        raise ValueError(f"Error downloading video: {e}")

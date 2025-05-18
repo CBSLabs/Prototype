@@ -26,19 +26,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem
-        disableTransitionOnChange
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black bg-white`}
       >
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black bg-white`}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
         >
           <main>{children}</main>
-        </body>
-        <Toaster position="top-center" className="border-none" />
-      </ThemeProvider>
+          <Toaster position="top-center" className="border-none" />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

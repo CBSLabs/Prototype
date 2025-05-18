@@ -58,6 +58,7 @@ from dotenv import load_dotenv
 from google import genai
 import subprocess
 import whisperx
+import shutil
 import time
 import json
 import os
@@ -136,20 +137,77 @@ def download_youtube_video(videoURL: str):
     except Exception as e:
         raise ValueError(f"Error downloading video: {e}")
 
+def process_viral_moment(base_dir, original_video_path, start_time, end_time, index, transcription_result):
+    clip_name = f"clip_{index + 1}.mp4"
+    clip_dir = base_dir / clip_name
+    clip_dir.mkdir(parents=True, exist_ok=True)
+
+    clip_segment_path = clip_dir / f"{clip_name}_segment.mp4"
+    vertical_mp4_path = clip_dir / "pyavi" / "video_out_vertical.mp4"
+    subtitle_output_path = clip_dir / "pyavi" / "video_with_subtitles.mp4"
+    
+    (clip_dir / "pywork").mkdir(exist_ok=True)
+    pyframes_path = clip_dir / "pyframes"
+    pyavi_path = clip_dir / "pyavi"
+    audio_path = clip_dir / "pyavi" / "audio.wav"
+    
+    pyframes_path.mkdir(exist_ok=True)
+    pyavi_path.mkdir(exist_ok=True)
+
+    duration = end_time - start_time
+    cut_command = (f"ffmpeg -i {original_video_path} -ss {start_time} -t {duration} "
+                   f"{clip_segment_path}")
+    subprocess.run(cut_command, shell=True, check=True,
+                   capture_output=True, text=True)
+
+    extract_cmd = f"ffmpeg -i {clip_segment_path} -vn -acodec pcm_s16le -ar 16000 -ac 1 {audio_path}"
+    subprocess.run(extract_cmd, shell=True,
+                   check=True, capture_output=True)
+
+    shutil.copy(clip_segment_path, base_dir / f"{clip_name}.mp4")
+
+    columbia_command = (f"python Columbia_test.py --videoName {clip_name} "
+                        f"--videoFolder {str(base_dir)} "
+                        f"--pretrainModel weight/finetuning_TalkSet.model")
+
+    columbia_start_time = time.time()
+    subprocess.run(columbia_command, cwd="/asd", shell=True)
+    columbia_end_time = time.time()
+    print(
+        f"Columbia script completed in {columbia_end_time - columbia_start_time:.2f} seconds")
+
+    tracks_path = clip_dir / "pywork" / "tracks.pckl"
+    scores_path = clip_dir / "pywork" / "scores.pckl"
+    if not tracks_path.exists() or not scores_path.exists():
+        raise FileNotFoundError("Tracks or scores not found for clip")
+    
+
 def identify_viral_moments(transcription_result):
     response = geminiClient.models.generate_content(
         model = "gemini-2.0-flash",
         contents = llm_system_prompt + transcription_result,
     )
     
-    print(f"Identified moments response: ${response.text}")
     cleaned_response = response.text.strip()
     if cleaned_response.startswith('```json'):
         cleaned_response = cleaned_response[len('```json'):].strip()
     if cleaned_response.endswith('```'):
-        cleaned_response = cleaned_response[len('```')].strip()
+        cleaned_response = cleaned_response[:-len('```')].strip()
+        
     
+    print("Cleaned response: ", cleaned_response)
     clip_momemts = json.loads(cleaned_response)
+    
+    for index, moment in enumerate(clip_momemts):
+        print(f"Clip {index + 1}: Start: {moment['start']}, End: {moment['end']}")
+        process_viral_moment(
+            base_dir,
+            video_path,
+            moment["start"],
+            moment["end"],
+            index,
+            transcription_result
+        )
     return clip_momemts
 
 

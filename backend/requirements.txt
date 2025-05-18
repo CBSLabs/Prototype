@@ -1,6 +1,7 @@
 fastapi
 uvicorn[standard]
 pytube
+pytubefix
 opencv-python
 ffmpeg-python
 pymongo
